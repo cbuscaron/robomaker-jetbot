@@ -4,13 +4,13 @@
 		<static>false</static>
 
 		<link name='chassis'>
-			<pose>0.0 0.0 0.043 1.57079632679 0.0 1.57079632679</pose>
+
+			<pose>0.0 0.0 0.050 0.0 0.0 3.14</pose>
 
 			<collision name='collision'>
 				<geometry>
 					<mesh>
-						<scale>0.001 0.001 0.001</scale>
-						<uri>model://robomaker-jetbot/meshes/JetBot-v3-Chassis.dae</uri>
+						<uri>model://robomaker-jetbot/meshes/waveshare-jetbot-base-link-convex-hull.stl</uri>
 					</mesh>
 				</geometry>
 				<surface>
@@ -26,133 +26,100 @@
 			</collision>
 
 			<visual name='visual'>
-				<pose>0.0 0.01 0.0 0.0 1.57079632679 1.57079632679</pose>
 				<geometry>
 					<mesh>
-						<scale>1.0 1.0 1.0</scale>
 						<uri>model://robomaker-jetbot/meshes/waveshare-jetbot-base_link.dae</uri>
 					</mesh>
 				</geometry>
 			</visual>
-		</link>
 
-		<link name="left_wheel">
-			<pose>0.03 0.05125 0.03 0.0 0.0 1.57079632679</pose>
-
-			<collision name="collision">
-				<geometry>
-					<mesh>
-						<scale>0.001 0.001 0.001</scale>
-						<uri>model://robomaker-jetbot/meshes/JetBot-v3-Wheel.stl</uri>
-					</mesh>
-				</geometry>
-			</collision>
-
-			<visual name="visual">
-				<geometry>
-					<mesh>
-						<scale>0.001 0.001 0.001</scale>
-						<uri>model://robomaker-jetbot/meshes/JetBot-v3-Wheel.stl</uri>
-					</mesh>
-				</geometry>
-				<material>
-					<ambient>0.1 0.1 0.1 1</ambient>
-					<diffuse>0.1 0.1 0.1 1</diffuse>
-					<specular>0 0 0 0</specular>
-					<emissive>0 0 0 1</emissive>
-				</material>
-			</visual>
 		</link>
 
 		<link name="right_wheel">
-			<pose>0.03 -0.0595 0.03 0.0 0.0 1.57079632679</pose>
+			<pose>0.02 -0.048 0.032 0.0 0.0 -1.57079632679</pose>
+
 			<collision name="collision">
 				<geometry>
 					<mesh>
-						<scale>0.001 0.001 0.001</scale>
-						<uri>model://robomaker-jetbot/meshes/JetBot-v3-Wheel.stl</uri>
+						<uri>model://robomaker-jetbot/meshes/waveshare-jetbot-wheel_link.dae</uri>
 					</mesh>
 				</geometry>
 			</collision>
+
 			<visual name="visual">
 				<geometry>
 					<mesh>
-						<scale>0.001 0.001 0.001</scale>
-						<uri>model://robomaker-jetbot/meshes/JetBot-v3-Wheel.stl</uri>
+						<uri>model://robomaker-jetbot/meshes/waveshare-jetbot-wheel_link.dae</uri>
+					</mesh>
+			 	</geometry>
+			</visual>
+		</link>
+
+		<joint type="revolute" name="right_wheel_hinge">
+			<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<child>right_wheel</child>
+				<parent>chassis</parent>
+				<axis>
+					<xyz>0 1 0</xyz>
+				</axis>
+		</joint>
+
+		<link name="left_wheel">
+			<pose>0.02 0.048 0.032 0.0 0.0 1.57079632679</pose>
+
+			<collision name="collision">
+				<geometry>
+					<mesh>
+						<uri>model://robomaker-jetbot/meshes/waveshare-jetbot-wheel_link.dae</uri>
 					</mesh>
 				</geometry>
-				<material>
-					<ambient>0.1 0.1 0.1 1</ambient>
-					<diffuse>0.1 0.1 0.1 1</diffuse>
-					<specular>0 0 0 0</specular>
-					<emissive>0 0 0 1</emissive>
-				</material>
+			</collision>
+
+			<visual name="visual">
+				<geometry>
+					<mesh>
+						<uri>model://robomaker-jetbot/meshes/waveshare-jetbot-wheel_link.dae</uri>
+					</mesh>
+				</geometry>
 			</visual>
 		</link>
 
 		<joint type="revolute" name="left_wheel_hinge">
-			<pose>0 0 0 0 0 0</pose>
-			<child>left_wheel</child>
-			<parent>chassis</parent>
-			<axis>
-				<xyz>0 1 0</xyz>
-			</axis>
+			<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<child>left_wheel</child>
+				<parent>chassis</parent>
+				<axis>
+					<xyz>0 1 0</xyz>
+				</axis>
 		</joint>
 
-		<joint type="revolute" name="right_wheel_hinge">
-			<pose>0 0 0 0 0 0</pose>
-			<child>right_wheel</child>
-			<parent>chassis</parent>
-			<axis>
-				<xyz>0 1 0</xyz>
-			</axis>
-		</joint>
+		<link name="lidar_link">
+			<pose>-0.015 -0.002 0.124 0.0 0.0 3.14</pose>
+			<collision name="collision">
+				<geometry>
+					<mesh>
+						<uri>model://robomaker-jetbot/meshes/lidar.dae</uri>
+					</mesh>
+				</geometry>
+			</collision>
 
-		<link name="camera_link">
-			<gravity>false</gravity>
-			<pose>0.055 0.0 0.0857 0 0.25 0</pose>
-			<inertial>
-				<mass>0.1</mass>
-			</inertial>
 			<visual name="visual">
 				<geometry>
-					<box>
-						<size>0.001 0.001 0.001</size>
-					</box>
+					<mesh>
+						<uri>model://robomaker-jetbot/meshes/lidar.dae</uri>
+					</mesh>
 				</geometry>
 			</visual>
-			<sensor name="camera" type="camera">
-				<camera>
-					<!--<horizontal_fov>1.047</horizontal_fov>-->
-					<horizontal_fov>2.79253</horizontal_fov>
-					<image>
-						<width>1280</width>
-						<height>720</height>
-					</image>
-					<clip>
-						<near>0.01</near>
-						<far>1</far>
-					</clip>
-					<!--<noise>
-						<type>gaussian</type>
-						<mean>0.0</mean>
-						<stddev>0.007</stddev>
-					</noise>-->
-				</camera>
-				<always_on>1</always_on>
-				<update_rate>10</update_rate>
-				<visualize>true</visualize>
-			</sensor>
 		</link>
 
-		<joint name="camera_joint" type="revolute">
-			<parent>chassis</parent>
-			<child>camera_link</child>
-			<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
-			<axis>
-				<xyz>0.1 0.0 0.0</xyz>
-			</axis>
-		 </joint>
+		<joint name="lidar_joint" type="fixed">
+		  <parent>chassis</parent>
+		  <child>lidar_link</child>
+		  <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+		  <axis>
+		    <xyz>0.0 0.0 0.0</xyz>
+		  </axis>
+		</joint>
 
 	</model>
 </sdf>
