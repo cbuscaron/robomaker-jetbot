@@ -6,53 +6,55 @@
 
 1. Clone and rebuild
 
-'''shell
+```shell
 git clone https://github.com/cbuscaron/robomaker-jetbot.git
 catkin_make
-'''
+```
 
 2. Source builds
 
-'''shell
+```shell
 source /opt/ros/<ros-distro>/setup.bash
 source /usr/share/gazebo/setup.sh
-'''
+```
 
 3. Launch
 
-'''shell
+```shell
 roslaunch robomaker-jetbot world.launch
-'''
+```
 
 ## Creating a new isolated local workspace
 
 1. Create a workspace. In this case, let’s call it ~/simulation_ws
 
-'''shell
+```shell
 mkdir ~/simulation_ws/src -p
-'''
+```
 
 2. Clone repository
-'''shell
+
+```shell
 cd ~/simulation_ws/src
 git clone https://github.com/cbuscaron/robomaker-jetbot.git
-'''
+```
 
 3.  Now let’s compile our newly created workspace
 
-'''shell
+```shell
 cd ~/simulation_ws/
 catkin_make
-'''
+```
 
 4. Source builds
 
-'''shell
+```shell
 source /opt/ros/<ros-distro>/setup.bash
 source /usr/share/gazebo/setup.sh
-'''
+```
 
 5. Launch  
-'''shell
+
+```shell
 roslaunch robomaker-jetbot world.launch
-'''
+```
