@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="robomaker-jetbot-sim" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:arg name="laser_visualize"  default="true"/>
-  <xacro:arg name="camera_visualize" default="true"/>
+  <xacro:arg name="laser_visualize"  default="false"/>
+  <xacro:arg name="camera_visualize" default="false"/>
 
   <gazebo reference="left_wheel">
     <mu1>0.1</mu1>
