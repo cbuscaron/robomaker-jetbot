@@ -1,6 +1,8 @@
 # robomaker-jetbot
 
-![Figure 1](https://github.com/cbuscaron/robomaker-jetbot/blob/main/robomaker-jetbot-robot-model.jpg)
+![Figure 1](https://github.com/cbuscaron/robomaker-jetbot/blob/main/robomaker-jetbot-robot-model-2.jpg)
+
+![Figure 1](https://github.com/cbuscaron/robomaker-jetbot/blob/main/robomaker-jetbot-lidar-on.jpg)
 
 ## Clone into your existing local workspace
 
