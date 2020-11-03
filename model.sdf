@@ -94,11 +94,11 @@
 		</joint>
 
 		<link name="lidar_link">
-			<pose>-0.015 -0.002 0.124 0.0 0.0 3.14</pose>
+			<pose>0.0103 -0.0058 0.127 0.0 0.0 3.14</pose>
 			<collision name="collision">
 				<geometry>
 					<mesh>
-						<uri>model://robomaker-jetbot/meshes/lidar.dae</uri>
+						<uri>model://robomaker-jetbot/meshes/lidar-base.dae</uri>
 					</mesh>
 				</geometry>
 			</collision>
@@ -106,7 +106,7 @@
 			<visual name="visual">
 				<geometry>
 					<mesh>
-						<uri>model://robomaker-jetbot/meshes/lidar.dae</uri>
+						<uri>model://robomaker-jetbot/meshes/lidar-base.dae</uri>
 					</mesh>
 				</geometry>
 			</visual>
@@ -121,8 +121,94 @@
 		  </axis>
 		</joint>
 
+		<link name="lidar_top_link">
+			<pose>0.0103 -0.0058 0.157 0.0 0.0 3.14</pose>
+
+			<collision name="collision">
+				<geometry>
+					<mesh>
+						<uri>model://robomaker-jetbot/meshes/lidar-top.dae</uri>
+					</mesh>
+				</geometry>
+			</collision>
+
+			<visual name="visual">
+
+				<geometry>
+					<mesh>
+						<uri>model://robomaker-jetbot/meshes/lidar-top.dae</uri>
+					</mesh>
+				</geometry>
+
+				<material>
+            <ambient>0.0 0.0 0.2 1</ambient>
+            <diffuse>0.0 0.0 0.2 1</diffuse>
+            <specular>0.0 0.0 0.2 64</specular>
+            <emissive>0.0 0.0 0.1 1</emissive>
+        </material>
+
+			</visual>
+
+			<sensor type="ray" name="ydlidar_x2">
+
+				 <pose>0 0 0.01 0.0 0.0 0.0</pose>
+
+				<!-- Enable visualization to see the rays in the GUI -->
+				<visualize>true</visualize>
+
+				<!-- Set the update rate of the sensor -->
+				<update_rate>7</update_rate>
+
+				<ray>
+					<!-- The scan element contains the horizontal and vertical beams.-->
+					<scan>
+						<!-- The horizontal beams -->
+						<horizontal>
+							<samples>3000</samples>
+							<resolution>1.0</resolution>
+							<min_angle>-3.14159</min_angle>
+							<max_angle>3.14159</max_angle>
+						</horizontal>
+
+					</scan>
+
+					<!-- Range defines characteristics of an individual beam -->
+					<range>
+						<!-- Minimum distance of the beam -->
+						<min>0.1</min>
+						<!-- Maximum distance of the beam -->
+						<max>8.0</max>
+						<!-- Linear resolution of the beam -->
+						<resolution>0.01</resolution>
+					</range>
+				</ray>
+
+				<plugin name="ydlidar_x2" filename="libgazebo_ros_laser.so">
+						<topicName>ydlidar_x2/scan</topicName>
+						<frameName>lidar_top_link</frameName>
+            <robotNamespace>my_robot</robotNamespace>
+        </plugin>
+				<always_on>1</always_on>
+
+			</sensor>
+
+		</link>
+
+		<joint name="lidar_top_joint" type="revolute">
+			<parent>lidar_link</parent>
+			<child>lidar_top_link</child>
+			<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+			<axis>
+				<xyz>0 0 1</xyz>
+				<limit>
+        	<!-- Use a very large number to indicate continuous rotation -->
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+        </limit>
+			</axis>
+		</joint>
+
 		<link name="camera_link">
-			<gravity>false</gravity>
 			<pose>0.075 0.0 0.0857 0 0.25 0</pose>
 				<inertial>
 					<mass>0.1</mass>
@@ -151,22 +237,20 @@
 					</camera>
 
 					<always_on>1</always_on>
-					<update_rate>10</update_rate>
+					<update_rate>30</update_rate>
 					<visualize>true</visualize>
 				</sensor>
 
 			</link>
 
-			<joint name="camera_joint" type="fixed">
-				<parent>chassis</parent>
-				<child>camera_link</child>
-				<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
-					<axis>
-					<xyz>0.1 0.0 0.0</xyz>
+	  <joint name="camera_joint" type="fixed">
+			<parent>chassis</parent>
+			<child>camera_link</child>
+			<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+				<axis>
+				<xyz>0.0 0.0 0.0</xyz>
 				</axis>
-			</joint>
-
-
+		</joint>
 
 	</model>
 </sdf>
