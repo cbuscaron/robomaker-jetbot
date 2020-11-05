@@ -14,4 +14,8 @@
                 <arg name="paused" value="$(arg pause)" />
                 <arg name="use_sim_time" value="true" />
         </include>
+
+
+	<param name="robot_description" command="$(find xacro)/xacro --inorder $(find robomaker-jetbot)/urdf/robomaker-jetbot.urdf.xacro" />
+	<node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model robomaker-jetbot -param robot_description" />
 </launch>
