@@ -7,21 +7,21 @@
     <child link="right_wheel"/>
     <origin rpy="0       0      -1.57079" xyz="0.02  -0.048  0.032"/>
     <axis xyz="-1  0  0"/>
-    <limit effort="0" lower="0" upper="0" velocity="0"/>
   </joint>
   <joint name="left_wheel_hinge" type="continuous">
     <parent link="chassis"/>
     <child link="left_wheel"/>
     <origin rpy="0      0      1.57079" xyz="0.02  0.048 0.032"/>
     <axis xyz="1 0 0"/>
-    <limit effort="0" lower="0" upper="0" velocity="0"/>
   </joint>
 
   <link name="chassis">
     <inertial>
-      <mass value="0.1"/>
+      <mass value="1.022"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <inertia ixx="2.21e-03" ixy="-1.22e-05" ixz="3.49e-05"
+               iyy="2.11e-03" iyz="-5.01e-06"
+               izz="2.00e-03" />
     </inertial>
     <collision name="collision">
       <origin rpy="0   0   3.14" xyz="0   0   0.05"/>
@@ -38,9 +38,11 @@
   </link>
   <link name="right_wheel">
     <inertial>
-      <mass value="0.1"/>
+      <mass value="2.85e-02" />
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <inertia ixx="1.12e-05" ixy="-4.24e-11" ixz="-5.94e-09"
+               iyy="1.12e-05" iyz="-1.44e-11"
+               izz="2.07e-05" />
     </inertial>
     <collision name="collision">
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -57,9 +59,12 @@
   </link>
   <link name="left_wheel">
     <inertial>
+      <mass value="2.85e-02" />
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      <inertia ixx="1.12e-05" ixy="-4.24e-11" ixz="-5.94e-09"
+               iyy="1.12e-05" iyz="-1.44e-11"
+               izz="2.07e-05" />
     </inertial>
     <collision name="collision">
       <origin rpy="0 0 0" xyz="0 0 0"/>
